@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ScrapZone — Открытие Кейсов</title>
+    <meta name="description" content="Открывай кейсы, тапай, копи и апгрейди металлолом!" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <div id="particles" class="particles"></div>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">
+                <span class="logo-icon">⚙️</span>
+                <span class="logo-text">SCRAP<span class="logo-accent">ZONE</span></span>
+            </div>
+            <div class="balance-box">
+                <span class="balance-icon">🔩</span>
+                <div class="balance-info">
+                    <span class="balance-label">Баланс</span>
+                    <span class="balance-value" id="balance-display">1 000</span>
+                    <span class="balance-currency">металлолом</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- TAB NAV -->
+    <nav class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('cases')" id="tab-cases">
+            <span class="tab-icon">📦</span> Кейсы
+        </button>
+        <button class="tab-btn" onclick="switchTab('tapper')" id="tab-tapper">
+            <span class="tab-icon">👆</span> Тапалка
+        </button>
+        <button class="tab-btn" onclick="switchTab('bank')" id="tab-bank">
+            <span class="tab-icon">🐷</span> Копилка
+        </button>
+        <button class="tab-btn" onclick="switchTab('upgrade')" id="tab-upgrade">
+            <span class="tab-icon">⚡</span> Апгрейд
+        </button>
+    </nav>
+
+    <main class="main">
+
+        <!-- ══════ TAB: КЕЙСЫ ══════ -->
+        <div class="tab-content active" id="content-cases">
+            <section class="hero">
+                <h1 class="hero-title">Открой свой <span class="glow-text">кейс</span></h1>
+                <p class="hero-sub">Испытай удачу. Собери легендарный металлолом.</p>
+            </section>
+
+            <section class="cases-section">
+                <div class="cases-grid">
+                    <div class="case-card" id="case-scrap">
+                        <div class="case-glow"></div>
+                        <div class="case-badge">ПОПУЛЯРНЫЙ</div>
+                        <div class="case-icon-wrap">
+                            <div class="case-icon">🔧</div>
+                            <div class="case-icon-ring"></div>
+                        </div>
+                        <h2 class="case-name">Ящик Металлолома</h2>
+                        <p class="case-desc">Полон гаек, болтов и запчастей</p>
+                        <div class="case-rarities">
+                            <span class="rarity-dot" style="background:#888ea8" title="Серая 34%"></span>
+                            <span class="rarity-dot" style="background:#4b9bff" title="Синяя 34%"></span>
+                            <span class="rarity-dot" style="background:#2ecc71" title="Зелёная 21%"></span>
+                            <span class="rarity-dot" style="background:#9b59b6" title="Фиолетовая 7%"></span>
+                            <span class="rarity-dot" style="background:#e74c3c" title="Красная 3%"></span>
+                            <span class="rarity-dot" style="background:#f5a623" title="Золотая 0.3%"></span>
+                        </div>
+                        <div class="case-cost">
+                            <span class="cost-label">Стоимость открытия</span>
+                            <span class="cost-value">100 🔩</span>
+                        </div>
+                        <button class="btn-open" id="btn-scrap" onclick="openCase('scrap')">
+                            <span class="btn-text">Открыть ящик</span>
+                            <span class="btn-shine"></span>
+                        </button>
+                    </div>
+
+                    <div class="case-card case-card--premium" id="case-relics">
+                        <div class="case-glow"></div>
+                        <div class="case-badge case-badge--gold">РЕДКИЙ</div>
+                        <div class="case-icon-wrap">
+                            <div class="case-icon">💎</div>
+                            <div class="case-icon-ring"></div>
+                        </div>
+                        <h2 class="case-name">Ящик Реликвий</h2>
+                        <p class="case-desc">Редкие артефакты ушедших эпох</p>
+                        <div class="case-rarities">
+                            <span class="rarity-dot" style="background:#888ea8" title="Серая 34%"></span>
+                            <span class="rarity-dot" style="background:#4b9bff" title="Синяя 34%"></span>
+                            <span class="rarity-dot" style="background:#2ecc71" title="Зелёная 21%"></span>
+                            <span class="rarity-dot" style="background:#9b59b6" title="Фиолетовая 7%"></span>
+                            <span class="rarity-dot" style="background:#e74c3c" title="Красная 3%"></span>
+                            <span class="rarity-dot" style="background:#f5a623" title="Золотая 0.3%"></span>
+                        </div>
+                        <div class="case-cost">
+                            <span class="cost-label">Стоимость открытия</span>
+                            <span class="cost-value">100 🔩</span>
+                        </div>
+                        <button class="btn-open btn-open--gold" id="btn-relics" onclick="openCase('relics')">
+                            <span class="btn-text">Открыть ящик</span>
+                            <span class="btn-shine"></span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Rarity table -->
+            <section class="rarity-section">
+                <h3 class="section-title">Таблица редкостей</h3>
+                <div class="rarity-table">
+                    <div class="rarity-row">
+                        <span class="rarity-pill" style="--rc:#888ea8">Серая</span>
+                        <span class="rarity-chance">~34%</span>
+                        <span class="rarity-mult loss">x0.3</span>
+                    </div>
+                    <div class="rarity-row">
+                        <span class="rarity-pill" style="--rc:#4b9bff">Синяя</span>
+                        <span class="rarity-chance">~34%</span>
+                        <span class="rarity-mult">x1.5</span>
+                    </div>
+                    <div class="rarity-row">
+                        <span class="rarity-pill" style="--rc:#2ecc71">Зелёная</span>
+                        <span class="rarity-chance">~21%</span>
+                        <span class="rarity-mult">x2</span>
+                    </div>
+                    <div class="rarity-row">
+                        <span class="rarity-pill" style="--rc:#9b59b6">Фиолетовая</span>
+                        <span class="rarity-chance">~7%</span>
+                        <span class="rarity-mult">x4</span>
+                    </div>
+                    <div class="rarity-row">
+                        <span class="rarity-pill" style="--rc:#e74c3c">Красная</span>
+                        <span class="rarity-chance">~3%</span>
+                        <span class="rarity-mult">x8</span>
+                    </div>
+                    <div class="rarity-row">
+                        <span class="rarity-pill" style="--rc:#f5a623">Золотая</span>
+                        <span class="rarity-chance">~0.3%</span>
+                        <span class="rarity-mult">x25</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- History -->
+            <section class="history-section" id="history-section" style="display:none;">
+                <h3 class="section-title">История открытий</h3>
+                <div class="history-list" id="history-list"></div>
+            </section>
+        </div>
+
+        <!-- ══════ TAB: ТАПАЛКА ══════ -->
+        <div class="tab-content" id="content-tapper">
+            <section class="hero">
+                <h1 class="hero-title">Тапай и <span class="glow-text green">зарабатывай</span></h1>
+                <p class="hero-sub">Каждый нажатие = +10 🔩 металлолома</p>
+            </section>
+
+            <div class="tapper-center">
+                <div class="tapper-stats">
+                    <div class="stat-box">
+                        <span class="stat-label">Всего нажатий</span>
+                        <span class="stat-value" id="tap-count">0</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">Заработано тапами</span>
+                        <span class="stat-value" id="tap-earned">0 🔩</span>
+                    </div>
+                </div>
+
+                <button class="tap-btn" id="tap-btn" onclick="doTap()">
+                    <span class="tap-icon">⚙️</span>
+                    <span class="tap-label">ТАП!</span>
+                </button>
+
+                <p class="tap-hint">Нажми на шестерёнку</p>
+            </div>
+
+            <!-- Floating +10 labels are appended here dynamically -->
+        </div>
+
+        <!-- ══════ TAB: КОПИЛКА ══════ -->
+        <div class="tab-content" id="content-bank">
+            <section class="hero">
+                <h1 class="hero-title">Копилка <span class="glow-text gold">🐷</span></h1>
+                <p class="hero-sub">Каждую минуту начисляется 10% от суммы на копилке</p>
+            </section>
+
+            <div class="bank-wrap">
+                <div class="bank-pig-wrap">
+                    <div class="bank-pig" id="bank-pig">🐷</div>
+                    <div class="bank-pig-ring"></div>
+                </div>
+
+                <div class="bank-info">
+                    <div class="bank-stat-row">
+                        <span class="bank-stat-label">В копилке</span>
+                        <span class="bank-stat-value" id="bank-stored">0 🔩</span>
+                    </div>
+                    <div class="bank-stat-row">
+                        <span class="bank-stat-label">Накоплено процентов</span>
+                        <span class="bank-stat-value green" id="bank-interest">0 🔩</span>
+                    </div>
+                    <div class="bank-stat-row">
+                        <span class="bank-stat-label">Следующий доход</span>
+                        <span class="bank-stat-value" id="bank-timer">—</span>
+                    </div>
+                </div>
+
+                <div class="bank-actions">
+                    <div class="input-group">
+                        <label class="input-label">Сумма для вклада</label>
+                        <div class="input-row">
+                            <input type="number" id="bank-deposit-input" class="game-input" placeholder="Введи сумму..."
+                                min="1" />
+                            <button class="btn-action" onclick="bankDeposit()">Положить</button>
+                        </div>
+                    </div>
+                    <button class="btn-action btn-action--green" onclick="bankWithdraw()" id="btn-bank-withdraw"
+                        disabled>
+                        Забрать всё из копилки
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══════ TAB: АПГРЕЙД ══════ -->
+        <div class="tab-content" id="content-upgrade">
+            <section class="hero">
+                <h1 class="hero-title">Апгрейд <span class="glow-text purple">⚡</span></h1>
+                <p class="hero-sub">Рискни валютой — увеличь её</p>
+            </section>
+
+            <div class="upgrade-wrap">
+
+                <!-- Input panel -->
+                <div class="upgrade-panel">
+                    <div class="input-group">
+                        <label class="input-label">Ставка (сколько поставить)</label>
+                        <input type="number" id="upg-stake" class="game-input" placeholder="Например: 500" min="1"
+                            oninput="calcUpgrade()" />
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Желаемый выигрыш (цель)</label>
+                        <input type="number" id="upg-want" class="game-input" placeholder="Например: 1000" min="1"
+                            oninput="calcUpgrade()" />
+                    </div>
+                </div>
+
+                <!-- Chance display -->
+                <div class="upgrade-chance-wrap" id="upgrade-chance-wrap">
+                    <div class="upgrade-chance-ring" id="upgrade-ring">
+                        <svg viewBox="0 0 120 120" class="chance-svg">
+                            <circle class="chance-bg" cx="60" cy="60" r="50" />
+                            <circle class="chance-arc" id="chance-arc" cx="60" cy="60" r="50" stroke-dasharray="0 314"
+                                stroke-dashoffset="78.5" />
+                        </svg>
+                        <div class="upgrade-chance-label">
+                            <span class="chance-pct" id="chance-pct">—</span>
+                            <span class="chance-sub">шанс</span>
+                        </div>
+                    </div>
+
+                    <div class="upgrade-summary" id="upgrade-summary">
+                        <div class="upgrade-sum-row">
+                            <span>Ставка:</span> <span id="upg-s-stake">—</span>
+                        </div>
+                        <div class="upgrade-sum-row">
+                            <span>Выигрыш:</span> <span id="upg-s-want" class="green">—</span>
+                        </div>
+                        <div class="upgrade-sum-row">
+                            <span>Проигрыш:</span> <span id="upg-s-lose" class="red">—</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-open btn-upgrade" id="btn-upgrade" onclick="doUpgrade()" disabled>
+                    <span class="btn-text">⚡ Апгрейд!</span>
+                    <span class="btn-shine"></span>
+                </button>
+
+                <!-- Result flash -->
+                <div class="upgrade-result" id="upgrade-result"></div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ROULETTE MODAL -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal" id="modal">
+            <div class="modal-title" id="modal-title">Открываем ящик...</div>
+            <div class="roulette-wrap">
+                <div class="roulette-viewport" id="roulette-viewport">
+                    <div class="roulette-strip" id="roulette-strip"></div>
+                </div>
+                <div class="roulette-pointer"></div>
+            </div>
+            <div class="modal-result" id="modal-result" style="display:none;">
+                <div class="result-star">★</div>
+                <div class="result-rarity" id="result-rarity"></div>
+                <div class="result-item" id="result-item"></div>
+                <div class="result-earn" id="result-earn"></div>
+                <div class="result-balance" id="result-balance"></div>
+                <button class="btn-close" onclick="closeModal()">Продолжить</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="game.js"></script>
+</body>
+
+</html>
